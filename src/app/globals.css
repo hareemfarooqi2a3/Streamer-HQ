@@ -1,26 +1,76 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Font Awesome */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+
+/* Custom Styles from original HTML */
+.gradient-bg {
+    background: linear-gradient(135deg, #0e0e10 0%, #1f1f23 50%, #32323a 100%);
+}
+.stream-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stream-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(145, 71, 255, 0.3);
+}
+.chatbot-toggle {
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.5);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 127, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 127, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 127, 0);
+    }
+}
+.live-badge {
+    animation: pulse-red 1.5s infinite;
+}
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 5px rgba(255, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Social icon hover effects */
+.social-icon {
+    @apply w-16 h-16 rounded-full flex items-center justify-center text-3xl transition-all duration-300 transform hover:scale-110 text-white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+/* Specific social icon backgrounds - using the defined colors directly */
+.bg-twitter { background-color: #1DA1F2; }
+.bg-instagram { background-color: #E1306C; }
+.bg-youtube { background-color: #FF0000; }
+.bg-tiktok { background-color: #000000; }
+.bg-discord { background-color: #7289DA; }
+.bg-reddit { background-color: #FF4500; }
+
+/* Chatbot animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
 }
